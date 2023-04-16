@@ -47,7 +47,7 @@ def emp_query():
 
     records = ''
     for emp in emp_records:
-        records += 'ID: ' + str(emp[4]) + '. ' + ' Name: ' + str(emp[0]) + ' ' + str(emp[1]) +',  DOE: ' + str(emp[2]) + ',  Salary: $' + str(emp[3]) + '0' + '\n'
+        records += 'ID ' + str(emp[4]) + '. ' + ' Name: ' + str(emp[0]) + ' ' + str(emp[1]) +',  DOE: ' + str(emp[2]) + ',  Salary: $' + str(emp[3]) + '0' + '\n'
     emp_label = Label(root, text=records, bg='white')
     emp_label.grid(row=13, column=0, padx=20, pady=(10, 5), columnspan=2)
 
