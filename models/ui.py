@@ -69,7 +69,7 @@ while loop:
         print("Department added successfully.")
     elif choice == '4':
         id = input("Enter the ID of the department to update: ")
-        print('Department\'s Attributes: ',cursor.execute("SELECT * FROM departments WHERE id = ?", (id)).fetchone())
+        print('Department\'s Attributes:',cursor.execute("SELECT * FROM departments WHERE id = ?", (id)).fetchone())
         name = input("Enter the new name of the department: ")
         employee_count = input("Enter the new number of employees in the department: ")
         department_domain = input("Enter the new department domain: ")
@@ -114,7 +114,7 @@ while loop:
         print("Employee deleted successfully.")
     elif choice == '9':
         id = input("Enter the ID of the employee to update: ")
-        print('Employee\'s Attributes: ',cursor.execute("SELECT * FROM employees WHERE id = ?", (id)).fetchone())
+        print('Employee\'s Attributes:',cursor.execute("SELECT * FROM employees WHERE id = ?", (id)).fetchone())
         fname = input("Enter the new first name of the employee: ")
         lname = input("Enter the new last name of the employee: ")
         doe = datetime.date.today()
