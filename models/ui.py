@@ -42,7 +42,8 @@ def print_menu():
     print("8. Delete Employee")
     print("9. Update Employee")
     print("10. View an Employee")
-    print("11. Quit")
+    print("11. Filter Employees/Departments")
+    print("12. Quit")
     print(67 * "-")
 
 create_db()
@@ -50,7 +51,7 @@ create_db()
 loop = True
 while loop:
     print_menu()
-    choice = input("Enter your choice [0-11]: ")
+    choice = input("Enter your choice [0-12]: ")
 
     if choice == '1':
         view_departments()
@@ -127,9 +128,33 @@ while loop:
         lname = input("Enter the last name of the Employee: ")
         view_employee(lname.capitalize())
     elif choice == '11':
+        print(' ')
+        print('Would you like to filter Employees or Departments? \n 1. Employees \n 2. Department')
+        print(' ')
+        filterChoice = input('Enter number you\'d like to filter: ')
+        if filterChoice == '1':
+            print(' ')
+            lastname = input('Enter the first letter of the last name you\'d like to filter: ')
+
+            # TRIED USING "LIKE [A-Z]%" BUT NAMES WOULDN'T DISPLAY INSTEAD RETURNED AN EMPTY LIST******************
+            letter = [lastname + '%']
+            filteredNames = cursor.execute("SELECT * FROM employees WHERE lname LIKE ?", (letter)).fetchall()
+            for name in filteredNames:
+                print(name)
+        elif filterChoice == '2':
+            deptNames = input('Enter the first letter of the departments you\d like to filter: ')
+
+            # TRIED USING "LIKE [A-Z]%" BUT NAMES WOULDN'T DISPLAY INSTEAD RETURNED AN EMPTY LIST******************
+            letter = [deptNames + '%']
+            filteredDepts = cursor.execute("SELECT * FROM departments WHERE name LIKE ?", (letter)).fetchall()
+            for name in filteredDepts:
+                print(name)
+    elif choice == '12':
         loop = False
     else:
 
         print("Invalid choice. Please enter a number from 1 to 8.")
+
+db.close()
 
 # print_menu()
