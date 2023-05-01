@@ -1,6 +1,34 @@
 from department import Department
 from db import create_db, view_departments, view_department, insert_department, update_department, delete_department, view_employees, delete_employee, update_employee, view_employee
 import datetime
+import sqlite3
+
+db = sqlite3.connect('ems.db')
+
+cursor = db.cursor()
+
+cursor.execute('''
+    CREATE TABLE IF NOT EXISTS departments (
+        [id] INTEGER PRIMARY KEY,
+        [name] TEXT,
+        [employee_count] INTEGER,
+        [department_domain] TEXT,
+        [labor_cost] INTEGER
+        )
+        ''')
+
+
+cursor.execute('''
+    CREATE TABLE IF NOT EXISTS employees (
+        [id] INTEGER PRIMARY KEY,
+        [fname] VARCHAR(255) NOT NULL,
+        [lname] VARCHAR(255) NOT NULL,
+        [doe] VARCHAR(255) NOT NULL,
+        [salary] INTEGER NOT NULL,
+        [department] TEXT
+        );
+        ''')
+
 
 def print_menu():
     print(30 * "-", "MENU", 30 * "-")
@@ -14,7 +42,8 @@ def print_menu():
     print("8. Delete Employee")
     print("9. Update Employee")
     print("10. View an Employee")
-    print("11. Quit")
+    print("11. Filter Employees/Departments")
+    print("12. Quit")
     print(67 * "-")
 
 create_db()
@@ -22,7 +51,7 @@ create_db()
 loop = True
 while loop:
     print_menu()
-    choice = input("Enter your choice [0-11]: ")
+    choice = input("Enter your choice [0-12]: ")
 
     if choice == '1':
         view_departments()
@@ -41,6 +70,7 @@ while loop:
         print("Department added successfully.")
     elif choice == '4':
         id = input("Enter the ID of the department to update: ")
+        print('Department\'s Attributes:',cursor.execute("SELECT * FROM departments WHERE id = ?", (id)).fetchone())
         name = input("Enter the new name of the department: ")
         employee_count = input("Enter the new number of employees in the department: ")
         department_domain = input("Enter the new department domain: ")
@@ -85,6 +115,7 @@ while loop:
         print("Employee deleted successfully.")
     elif choice == '9':
         id = input("Enter the ID of the employee to update: ")
+        print('Employee\'s Attributes:',cursor.execute("SELECT * FROM employees WHERE id = ?", (id)).fetchone())
         fname = input("Enter the new first name of the employee: ")
         lname = input("Enter the new last name of the employee: ")
         doe = datetime.date.today()
@@ -97,9 +128,33 @@ while loop:
         lname = input("Enter the last name of the Employee: ").capitalize()
         view_employee(lname)
     elif choice == '11':
+        print(' ')
+        print('Would you like to filter Employees or Departments? \n 1. Employees \n 2. Department')
+        print(' ')
+        filterChoice = input('Enter number you\'d like to filter: ')
+        if filterChoice == '1':
+            print(' ')
+            lastname = input('Enter the first letter of the last name you\'d like to filter: ')
+
+            # TRIED USING "LIKE [A-Z]%" BUT NAMES WOULDN'T DISPLAY INSTEAD RETURNED AN EMPTY LIST******************
+            letter = [lastname + '%']
+            filteredNames = cursor.execute("SELECT * FROM employees WHERE lname LIKE ?", (letter)).fetchall()
+            for name in filteredNames:
+                print(name)
+        elif filterChoice == '2':
+            deptNames = input('Enter the first letter of the departments you\d like to filter: ')
+
+            # TRIED USING "LIKE [A-Z]%" BUT NAMES WOULDN'T DISPLAY INSTEAD RETURNED AN EMPTY LIST******************
+            letter = [deptNames + '%']
+            filteredDepts = cursor.execute("SELECT * FROM departments WHERE name LIKE ?", (letter)).fetchall()
+            for name in filteredDepts:
+                print(name)
+    elif choice == '12':
         loop = False
     else:
 
         print("Invalid choice. Please enter a number from 1 to 8.")
+
+db.close()
 
 # print_menu()
