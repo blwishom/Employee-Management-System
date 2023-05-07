@@ -1,5 +1,7 @@
 import sqlite3
 
+# initialize database
+
 def create_db():
     db = sqlite3.connect('ems.db')
 
@@ -28,12 +30,16 @@ def create_db():
             ''')
     db.close()
 
+# create a department
+
 def insert_department(department):
     db = sqlite3.connect('ems.db')
     cursor = db.cursor()
     params = (department['name'], department['employee_count'], department['department_domain'], department['labor_cost'] )
     cursor.execute(f"INSERT INTO departments (name, employee_count, department_domain, labor_cost) VALUES(?, ?, ?, ?)", params)
     db.commit()
+
+# view all departments
 
 def view_departments():
     db = sqlite3.connect('ems.db')
@@ -51,6 +57,8 @@ def view_departments():
     db.close()
     return results
 
+# create an employee
+
 def insert_employee(employee):
     print(employee)
     db = sqlite3.connect('ems.db')
@@ -59,6 +67,8 @@ def insert_employee(employee):
     cursor.execute(f"INSERT INTO employees (fname, lname, doe, salary, department) VALUES(?, ?, ?, ?, ?)", params)
     db.commit()
     db.close()
+
+# view all employees
 
 def view_employees():
     db = sqlite3.connect('ems.db')
@@ -75,6 +85,8 @@ def view_employees():
     db.close()
     return results
 
+# view a single employee
+
 def view_employee(lname):
     db = sqlite3.connect('ems.db')
 
@@ -86,6 +98,8 @@ def view_employee(lname):
     db.close()
     return results
 
+# view a single department
+
 def view_department(name):
     db = sqlite3.connect('ems.db')
 
@@ -96,6 +110,8 @@ def view_department(name):
     print(results)
     db.close()
     return results
+
+# update a department
 
 def update_department(payload):
     db = sqlite3.connect('ems.db')
@@ -111,6 +127,8 @@ def update_department(payload):
 
     db.commit()
     db.close()
+
+# update an employee
 
 def update_employee(payload):
     db = sqlite3.connect('ems.db')
@@ -128,6 +146,8 @@ def update_employee(payload):
     db.commit()
     db.close()
 
+# delete an employee
+
 def delete_employee(employee):
     db = sqlite3.connect('ems.db')
     cursor = db.cursor()
@@ -137,6 +157,8 @@ def delete_employee(employee):
     print("successfully deleted")
     db.commit()
     db.close()
+
+# delete a department
 
 def delete_department(department):
     db = sqlite3.connect('ems.db')

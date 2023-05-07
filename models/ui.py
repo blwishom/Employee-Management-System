@@ -125,8 +125,8 @@ while loop:
         update_employee(payload)
         print("Employee updated successfully.")
     elif choice == '10':
-        lname = input("Enter the last name of the Employee: ")
-        view_employee(lname.capitalize())
+        lname = input("Enter the last name of the Employee: ").capitalize()
+        view_employee(lname)
     elif choice == '11':
         print(' ')
         print('Would you like to filter Employees or Departments? \n 1. Employees \n 2. Department')
