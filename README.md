@@ -4,7 +4,8 @@ An Employee management system used for creating departments, viewing them, chang
 
 ## Main Menu
 
-<img width="709" alt="Screen Shot 2023-04-13 at 4 22 06 PM" src="https://user-images.githubusercontent.com/101578812/231874346-49025e9e-4b7e-440d-94e8-6903a42ca585.png">
+![Screenshot (473)](https://user-images.githubusercontent.com/79879124/236707671-0e19840e-1fad-4a3e-8167-344a2a5d8962.png)
+
 
 ## Create
 
@@ -27,4 +28,12 @@ An Employee management system used for creating departments, viewing them, chang
 <img width="565" alt="Screen Shot 2023-04-13 at 4 28 55 PM" src="https://user-images.githubusercontent.com/101578812/231875634-3b3f247b-db32-462e-888a-ccd0e673a5c2.png">
 
 <img width="599" alt="Screen Shot 2023-04-13 at 4 29 32 PM" src="https://user-images.githubusercontent.com/101578812/231875761-a2c799b1-d0ac-41b0-aa25-08e28f3e6175.png">
+
+## Filter
+#### Filtering employees:
+![Screenshot (476)](https://user-images.githubusercontent.com/79879124/236707748-583aa93e-d63c-41b1-9969-9828484c49fb.png)
+
+#### Filtering departments:
+![Screenshot (478)](https://user-images.githubusercontent.com/79879124/236708012-a36f4006-08a7-4e28-8e16-71d482a09b45.png)
+
 
