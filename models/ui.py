@@ -135,20 +135,26 @@ while loop:
         if filterChoice == '1':
             print(' ')
             lastname = input('Enter the first letter of the last name you\'d like to filter: ')
+            print(' ')
 
             # TRIED USING "LIKE [A-Z]%" BUT NAMES WOULDN'T DISPLAY INSTEAD RETURNED AN EMPTY LIST******************
             letter = [lastname + '%']
             filteredNames = cursor.execute("SELECT * FROM employees WHERE lname LIKE ?", (letter)).fetchall()
             for name in filteredNames:
+                print('Filter results:')
                 print(name)
+                print(' ')
         elif filterChoice == '2':
-            deptNames = input('Enter the first letter of the departments you\d like to filter: ')
+            deptNames = input('Enter the first letter of the departments you\'d like to filter: ')
+            print(' ')
 
             # TRIED USING "LIKE [A-Z]%" BUT NAMES WOULDN'T DISPLAY INSTEAD RETURNED AN EMPTY LIST******************
             letter = [deptNames + '%']
             filteredDepts = cursor.execute("SELECT * FROM departments WHERE name LIKE ?", (letter)).fetchall()
             for name in filteredDepts:
+                print('Filter results:')
                 print(name)
+                print(' ')
     elif choice == '12':
         loop = False
     else:
