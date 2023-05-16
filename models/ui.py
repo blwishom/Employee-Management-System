@@ -134,7 +134,7 @@ while loop:
         filterChoice = input('Enter number you\'d like to filter: ')
         if filterChoice == '1':
             print(' ')
-            lastname = input('Enter the first letter of the last name you\'d like to filter: ')
+            lastname = input('Enter at least the first letter of the last name you\'d like to filter: ')
             print(' ')
 
             # TRIED USING "LIKE [A-Z]%" BUT NAMES WOULDN'T DISPLAY INSTEAD RETURNED AN EMPTY LIST******************
@@ -145,7 +145,7 @@ while loop:
                 print(name)
                 print(' ')
         elif filterChoice == '2':
-            deptNames = input('Enter the first letter of the departments you\'d like to filter: ')
+            deptNames = input('Enter at least the first letter of the departments you\'d like to filter: ')
             print(' ')
 
             # TRIED USING "LIKE [A-Z]%" BUT NAMES WOULDN'T DISPLAY INSTEAD RETURNED AN EMPTY LIST******************
